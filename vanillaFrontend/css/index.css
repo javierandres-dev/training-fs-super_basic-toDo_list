@@ -39,3 +39,13 @@ button {
   border: none;
   background-color: transparent;
 }
+/* */
+.btn-info {
+  background-color: blue;
+  color: white;
+}
+
+.btn-del {
+  background-color: red;
+  color: white;
+}
