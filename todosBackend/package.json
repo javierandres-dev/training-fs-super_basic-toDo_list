@@ -1,13 +1,13 @@
 {
-  "name": "backend",
+  "name": "todos-backend",
   "version": "0.1.0",
-  "description": "api restful super basic",
+  "description": "todos backend is an api restful super basic",
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js"
   },
   "keywords": [
-    "api restful"
+    "api restful, todo list, crud"
   ],
   "author": "https://javierandresgp.com",
   "license": "MIT",

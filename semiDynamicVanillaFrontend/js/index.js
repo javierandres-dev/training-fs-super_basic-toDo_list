@@ -2,22 +2,20 @@
 const d = document,
   apiUrl = 'http://localhost:4000/api/v1/todos',
   $main = d.querySelector('main'),
-  $input = d.createElement('input'),
-  $btn = d.createElement('button'),
-  $p = d.createElement('p'),
-  $ol = d.createElement('ol');
+  $input = d.getElementById('input'),
+  $btn = d.getElementById('btn'),
+  $p = d.getElementById('p'),
+  $ul = d.createElement('ul');
 
 let $infoBtns = null,
   $delBtns = null;
 
 let todos = null;
 
+$main.classList.add('container');
+
 /* EVENTS */
 d.addEventListener('DOMContentLoaded', () => {
-  $input.setAttribute('type', 'text');
-  $main.appendChild($input);
-  $btn.textContent = 'Create';
-  $main.appendChild($btn);
   readTodos();
   eventListeners();
 });
@@ -28,8 +26,8 @@ const eventListeners = () => {
 
 const watchChecks = (checks) => {
   checks.forEach((check) => {
-    const id = check.parentNode.id;
-    const task = check.parentNode.dataset.task;
+    const id = check.parentNode.parentNode.id;
+    const task = check.parentNode.parentNode.dataset.task;
     const done = check.checked;
     check.addEventListener('click', () => updateTodo(id, task, done));
   });
@@ -37,20 +35,21 @@ const watchChecks = (checks) => {
 
 const watchInfoBtns = (btns) => {
   btns.forEach((btn) => {
-    const id = btn.parentNode.id;
+    const id = btn.parentNode.parentNode.id;
     btn.addEventListener('click', () => readTodo(id));
   });
 };
 
 const watchDelBtns = (btns) => {
   btns.forEach((btn) => {
-    const id = btn.parentNode.id;
+    const id = btn.parentNode.parentNode.id;
     btn.addEventListener('click', () => deleteTodo(id));
   });
 };
 
 /* FUNCTIONS */
-const createTodo = () => {
+const createTodo = (e) => {
+  e.preventDefault();
   const data = {
     name: $input.value,
     completed: false,
@@ -75,24 +74,28 @@ const createTodo = () => {
 };
 
 const readTodos = () => {
+  $p.classList.add('d-none');
   $p.textContent = '';
-  $ol.innerHTML = '';
+  $ul.innerHTML = '';
   fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {
       todos = data.success;
       if (todos.length === 0) {
-        $p.textContent = 'Without to-dos';
+        $p.classList.remove('d-none');
+        $p.classList.add('p');
+        $p.textContent = 'Without To-Dos';
         $main.appendChild($p);
       } else {
         todos.forEach((item) => {
-          const $delBtn = d.createElement('button'),
-            $infoBtn = d.createElement('button'),
-            $checkbox = d.createElement('input'),
-            $li = d.createElement('li');
-          $infoBtn.classList.add('btn-info');
+          const $div = d.createElement('div');
+          ($delBtn = d.createElement('button')),
+            ($infoBtn = d.createElement('button')),
+            ($checkbox = d.createElement('input')),
+            ($li = d.createElement('li'));
+          $infoBtn.classList.add('btn', 'btn-info');
           $infoBtn.textContent = 'More info';
-          $delBtn.classList.add('btn-del');
+          $delBtn.classList.add('btn', 'btn-del');
           $delBtn.textContent = 'Delete';
           $checkbox.setAttribute('type', 'checkbox');
           $checkbox.checked = item.completed;
@@ -100,12 +103,14 @@ const readTodos = () => {
           $li.dataset.task = item.name;
           $li.dataset.done = item.completed;
           $li.appendChild(d.createTextNode(item.name));
-          $li.appendChild($checkbox);
-          $li.appendChild($infoBtn);
-          $li.appendChild($delBtn);
-          $ol.appendChild($li);
+          $div.appendChild($checkbox);
+          $div.appendChild($infoBtn);
+          $div.appendChild($delBtn);
+          $li.appendChild($div);
+          $ul.appendChild($li);
         });
-        $main.appendChild($ol);
+        $ul.classList.add('ul');
+        $main.appendChild($ul);
         $infoBtns = d.querySelectorAll('.btn-info');
         watchInfoBtns($infoBtns);
         $delBtns = d.querySelectorAll('.btn-del');
@@ -122,6 +127,8 @@ const readTodo = (id) => {
     .then((res) => res.json())
     .then((data) => {
       const status = data.success.completed ? ', is ' : ', is not ';
+      $p.classList.remove('d-none');
+      $p.classList.add('p');
       $p.textContent = 'The task: ' + data.success.name + status + 'completed';
       $main.appendChild($p);
     })
