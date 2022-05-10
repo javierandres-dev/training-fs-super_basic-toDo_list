@@ -11,8 +11,8 @@ const port = process.env.PORT;
 
 server.use(cors());
 server.use(express.json());
-//server.use('/', (req, res) => res.json({ todosOnline: true }));
 server.use('/api/v1/todos', todosRouter);
+server.use('/', (req, res) => res.json({ todosOnline: true }));
 
 mongoose
   .connect(process.env.MONGODB_URI)

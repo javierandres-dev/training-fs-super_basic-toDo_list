@@ -11,11 +11,15 @@ const port = process.env.PORT;
 
 server.use(cors());
 server.use(express.json());
-//server.use('/', (req, res) => res.json({ usersOnline: true }));
 server.use('/api/v1/users', usersRouter);
+server.use('/', (req, res) => res.json({ usersOnline: true }));
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  /* .connect(process.env.LOCALMONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }) */
+  .connect(process.env.LOCAL_MONGODB_URI)
   .then(() => console.log('Users database connected'))
   .catch((err) =>
     console.error(`Users database connection failured - Error: ${err}`)
