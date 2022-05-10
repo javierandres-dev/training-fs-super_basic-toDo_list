@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const todosRouter = require('./routes');
+const usersRouter = require('./routes');
 
 dotenv.config();
 
@@ -11,14 +11,14 @@ const port = process.env.PORT;
 
 server.use(cors());
 server.use(express.json());
-//server.use('/', (req, res) => res.json({ todosOnline: true }));
-server.use('/api/v1/todos', todosRouter);
+//server.use('/', (req, res) => res.json({ usersOnline: true }));
+server.use('/api/v1/users', usersRouter);
 
 mongoose
   .connect(process.env.MONGODB_URI)
-  .then(() => console.log('Todos database connected'))
+  .then(() => console.log('Users database connected'))
   .catch((err) =>
-    console.error(`Todos database connection failured - Error: ${err}`)
+    console.error(`Users database connection failured - Error: ${err}`)
   );
 
 server.listen(port, () => console.log(`Server running on port ${port}`));

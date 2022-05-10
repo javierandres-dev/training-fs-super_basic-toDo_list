@@ -1,0 +1,24 @@
+{
+  "name": "users-backend",
+  "version": "0.1.0",
+  "description": "users backend is an api restful super basic",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "api restful, todo list, crud"
+  ],
+  "author": "https://javierandresgp.com",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "mongoose": "^6.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
