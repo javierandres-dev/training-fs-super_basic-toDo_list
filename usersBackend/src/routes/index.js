@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
     const newUser = await User({ ...req.body, password: hash });
     newUser
       .save()
-      .then((data) => res.json({ success: data }))
+      .then((data) => res.json({ success: true }))
       .catch((err) => res.json({ failured: err }));
   } catch (error) {
     res.json({ failure: error });

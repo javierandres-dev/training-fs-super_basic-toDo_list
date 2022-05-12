@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorizationService } from '../../services/authorization.service';
+import { SignUpService } from '../../services/sign-up.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,20 +8,22 @@ import { AuthorizationService } from '../../services/authorization.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
+  constructor(private signUpService: SignUpService, private router: Router) {}
+
   user = {
     name: '',
     email: '',
     password: '',
   };
 
-  constructor(private authorizationService: AuthorizationService) {}
-
   ngOnInit(): void {}
 
   signUp() {
-    this.authorizationService.signUpUser(this.user).subscribe(
+    this.signUpService.signUpUser(this.user).subscribe(
       (res) => {
-        console.log('res:', res);
+        if (res.success) {
+          this.router.navigate(['/login']);
+        }
       },
       (err) => {
         console.log('err:', err);

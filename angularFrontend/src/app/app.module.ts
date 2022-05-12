@@ -11,6 +11,8 @@ import { LoginComponent } from './components/login/login.component';
 import { PrivateComponent } from './components/private/private.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+import { AuthGuard } from './guards/auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,14 +27,18 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
       { path: 'home', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'sign-up', component: SignUpComponent },
-      { path: 'private', component: PrivateComponent },
+      {
+        path: 'private',
+        component: PrivateComponent,
+        canActivate: [AuthGuard],
+      },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: PageNotFoundComponent },
     ]),
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
