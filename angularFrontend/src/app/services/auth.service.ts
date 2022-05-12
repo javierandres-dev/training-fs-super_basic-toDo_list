@@ -9,4 +9,8 @@ export class AuthService {
   isAuth(): boolean {
     return !!sessionStorage.getItem('tkn');
   }
+
+  getToken() {
+    return sessionStorage.getItem('tkn');
+  }
 }
