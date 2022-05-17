@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class LoginService {
   constructor(private http: HttpClient, private router: Router) {}
 
-  private URL = 'http://localhost:4100/api/v1/users/login';
+  private URL = 'http://localhost:4000/api/v1/users/login';
 
   loginUser(user: any) {
     return this.http.post<any>(this.URL, user);

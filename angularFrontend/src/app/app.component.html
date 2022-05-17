@@ -20,7 +20,17 @@
         <li class="nav-item" routerLinkActive="active" routerLink="/private">
           <a class="nav-link disabled">Private</a>
         </li>
-        <ng-container>
+        <ng-container *ngIf="authService.isAuth(); else notLogged">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="cursor: pointer"
+              (click)="loginService.logoutUser()"
+              >LogOut</a
+            >
+          </li>
+        </ng-container>
+        <ng-template #notLogged>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" routerLink="/sign-up"
               >Sign Up</a
@@ -31,7 +41,7 @@
               >LogIn</a
             >
           </li>
-        </ng-container>
+        </ng-template>
       </ul>
     </div>
   </div>
