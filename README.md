@@ -6,12 +6,21 @@ A basic ToDo list with simple CRUD.
 ## Objectives
 Learn, practice, know and compare differents technologies based on JavaScript.
 ## Requirements
-- On frontend, compare final build directory of each case.
+- Single Page Application
+- Free access to home page
+- Restricted access to private page (ToDo List)
+- SigUp page
+- Login page
+  - Persist while user don't use LogOut button
+- LogOut button
 ## Task
-- [ ] Database on MongoDB
-- [ ] Backend microservice - Users
-- [ ] Backend microservice - ToDos
-- [ ] ToDo list frontend SPA with CSS from CDN Bootstrap
+- [ ] Databases on MongoDB
+  - [ ] Database for users
+  - [ ] Database for todos
+- [ ] Backend microservices
+  - [ ] Users microservice
+  - [ ] Todos microservice
+- [ ] Frontend SPA with CSS from CDN Bootstrap
   - [ ] Vanilla JavaScript
   - [ ] Angular
   - [ ] Svelte
@@ -19,7 +28,8 @@ Learn, practice, know and compare differents technologies based on JavaScript.
   - [ ] React
 ## Instructions
 ### Start Backend
-- Mongo database ready, cloud or local.
+#### Databases
+- Mongo
 #### Users microservice
 - open first terminal
   - cd usersBackend
@@ -39,20 +49,18 @@ Server running on port 4100
 Todos database connected
 ```
 ### Start Frontend
-#### Vanilla JavaScript - Semi-dynamic
+#### JavaScript - Vanilla
 - ...
-#### Vanilla JavaScript - Dynamic
-- ...
-#### JavaScript - Angular framework
+#### JavaScript - Angular
 - cd angularFrontend
 - npm i
 - npm start
 - open http://localhost:4200 in your browser
-#### JavaScript - React framework
+#### JavaScript - React
 - ...
-#### JavaScript - Svelte framework
+#### JavaScript - Svelte
 - ...
-#### JavaScript - Vue framework
+#### JavaScript - Vue
 - ...
 ### Use
 - visit home page
