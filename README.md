@@ -54,4 +54,4 @@ Todos database connected
 ---
 :copyright: 2022
 ## Software Developer
-<a href="https://javierandresgp.com" target="_blank">Javier Andrés Garzón Patarroyo</a>
+[Javier Andrés Garzón Patarroyo](https://javierandresgp.com)
