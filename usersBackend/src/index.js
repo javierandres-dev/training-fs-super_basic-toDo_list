@@ -15,7 +15,8 @@ server.use('/api/v1/users', usersRouter);
 server.use('/', (req, res) => res.json({ usersOnline: true }));
 
 mongoose
-  .connect(process.env.CLOUD_MONGODB_URI)
+  //.connect(process.env.CLOUD_MONGODB_URI)
+  .connect(process.env.LOCAL_MONGODB_URI)
   .then(() => console.log('Users database connected'))
   .catch((err) =>
     console.error(`Users database connection failured - Error: ${err}`)

@@ -1,6 +1,6 @@
 /* VARIABLES */
 const d = document,
-  apiUrl = 'http://localhost:4000/api/v1/todos',
+  apiUrl = 'http://localhost:4100/api/v1/todos',
   $main = d.querySelector('main'),
   $input = d.getElementById('input'),
   $btn = d.getElementById('btn'),
