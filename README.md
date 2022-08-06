@@ -9,9 +9,9 @@ Learn, practice, know and compare differents technologies based on JavaScript.
 - On frontend, compare final build directory of each case.
 ## Task
 - [ ] Database on MongoDB
-- [ ] Users backend
-- [ ] Todos backend
-- [ ] ToDo list frontend
+- [ ] Backend microservice - Users
+- [ ] Backend microservice - ToDos
+- [ ] ToDo list frontend SPA with CSS from CDN Bootstrap
   - [ ] Vanilla JavaScript
   - [ ] Angular
   - [ ] Svelte
