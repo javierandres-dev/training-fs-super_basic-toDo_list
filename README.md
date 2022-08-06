@@ -10,9 +10,11 @@ Learn, practice, know and compare differents technologies based on JavaScript.
 - Free access to home page
 - Restricted access to private page (ToDo List)
 - SigUp page
+  - Save password encrypted
 - Login page
-  - Persist while user don't use LogOut button
+  - Validate access
 - LogOut button
+- Persist information (session and todo list) while user don't use LogOut button
 ## Task
 - [ ] Databases on MongoDB
   - [ ] Database for users
