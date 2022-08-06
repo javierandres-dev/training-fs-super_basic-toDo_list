@@ -3,7 +3,7 @@
 ## Description
 Web project full stack.  
 A basic ToDo list with simple CRUD.
-## Objetives
+## Objectives
 Learn, practice, know and compare differents technologies based on JavaScript.
 ## Requirements
 - On frontend, compare final build directory of each case.
@@ -54,4 +54,4 @@ Todos database connected
 ---
 :copyright: 2022
 ## Software Developer
-###### <a href="https://javierandresgp.com" target="_blank">Javier Andrés Garzón Patarroyo</a>
+<a href="https://javierandresgp.com" target="_blank">Javier Andrés Garzón Patarroyo</a>
