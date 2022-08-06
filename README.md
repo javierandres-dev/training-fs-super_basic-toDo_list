@@ -18,7 +18,7 @@ Learn, practice, know and compare differents technologies based on JavaScript.
   - [ ] Vue
   - [ ] React
 ## Instructions
-### Backend
+### Start Backend
 - Mongo database ready, cloud or local.
 #### Users microservice
 - open first terminal
@@ -38,19 +38,32 @@ Users database connected
 Server running on port 4100
 Todos database connected
 ```
-### Frontend
+### Start Frontend
 #### Vanilla JavaScript - Semi-dynamic
 - ...
 #### Vanilla JavaScript - Dynamic
 - ...
 #### JavaScript - Angular framework
-- ...
+- cd angularFrontend
+- npm i
+- npm start
+- open http://localhost:4200 in your browser
 #### JavaScript - React framework
 - ...
 #### JavaScript - Svelte framework
 - ...
 #### JavaScript - Vue framework
 - ...
+### Use
+- visit home page
+- try visit private page
+- go to Sign Up and create an account
+- go to Login and use your credentials
+- visit private page
+- test app, CRUD todo list
+- switch between home page and private page
+- select LogOut
+- switch between home page and private page again
 ---
 :copyright: 2022
 ## Software Developer
