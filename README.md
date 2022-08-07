@@ -28,42 +28,56 @@ Learn, practice, know and compare differents technologies based on JavaScript.
   - [ ] Svelte
   - [ ] Vue
   - [ ] React
-## Instructions
-### Start Backend
-#### Databases
-- Mongo
-#### Users microservice
-- open first terminal
-  - cd usersBackend
-  - npm i
-  - npm run dev
+## More info
+Running this project locally.
+### Instructions
+To get started you will first need the followind installed on your machine:
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
+Then you must make sure you have running locally MongoDB.
+1. Clone this repository
+2. Start Backend microservices
+  2.1 Running Users microservice
+Open first terminal and execute the followin commands
+```
+$ cd usersBackend
+$ npm install
+$ npm run dev
+```
+You must be looking this at your first teminal
 ```
 Server running on port 4000
 Users database connected
 ```
-#### Todos microservice
-- open second terminal
-  - cd todosBackend
-  - npm i
-  - npm run dev
+  2.2 Running Todos microservice
+Open a second terminal and execute the followin commands
+```
+$ cd todosBackend
+$ npm install
+$ npm run dev
+```
+You must be looking this at the your second terminal
 ```
 Server running on port 4100
 Todos database connected
 ```
-### Start Frontend
+3. Start Frontend
 #### JavaScript - Vanilla
-- ...
+- ... soon ...
 #### JavaScript - Angular
-- cd angularFrontend
-- npm i
-- npm start
-- open http://localhost:4200 in your browser
+Open another terminal and execute the followin command
+```
+$ cd angularFrontend
+$ npm install
+$ npm start
+```
+Open http://localhost:4200 in your browser
 #### JavaScript - React
-- ...
+- ... soon ...
 #### JavaScript - Svelte
-- ...
+- ... soon ...
 #### JavaScript - Vue
-- ...
+- ... soon ...
 ### Use
 - visit home page
 - try visit private page
