@@ -35,9 +35,9 @@ To get started you will first need the followind installed on your machine:
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
 Then you must make sure you have running locally MongoDB.
-1. Clone this repository
-2. Start Backend microservices
-  2.1 Running Users microservice
+1. #### Clone this repository
+2. #### Start Backend microservices
+  1. Running Users microservice
 Open first terminal and execute the followin commands
 ```
 $ cd usersBackend
@@ -49,7 +49,7 @@ You must be looking this at your first teminal
 Server running on port 4000
 Users database connected
 ```
-  2.2 Running Todos microservice
+  2. Running Todos microservice
 Open a second terminal and execute the followin commands
 ```
 $ cd todosBackend
@@ -61,10 +61,10 @@ You must be looking this at the your second terminal
 Server running on port 4100
 Todos database connected
 ```
-3. Start Frontend
-#### JavaScript - Vanilla
+3. #### Start Frontend
+##### JavaScript - Vanilla
 - ... soon ...
-#### JavaScript - Angular
+##### JavaScript - Angular
 Open another terminal and execute the followin command
 ```
 $ cd angularFrontend
@@ -72,11 +72,11 @@ $ npm install
 $ npm start
 ```
 Open http://localhost:4200 in your browser
-#### JavaScript - React
+##### JavaScript - React
 - ... soon ...
-#### JavaScript - Svelte
+##### JavaScript - Svelte
 - ... soon ...
-#### JavaScript - Vue
+##### JavaScript - Vue
 - ... soon ...
 ### Use
 - visit home page
