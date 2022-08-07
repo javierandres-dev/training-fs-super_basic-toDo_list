@@ -36,8 +36,7 @@ To get started you will first need the followind installed on your machine:
 - [MongoDB](https://www.mongodb.com/)
 Then you must make sure you have running locally MongoDB.
 1. #### Clone this repository
-2. #### Start Backend microservices
-  1. Running Users microservice
+2. #### Start backend Users microservice
 Open first terminal and execute the followin commands
 ```
 $ cd usersBackend
@@ -49,7 +48,7 @@ You must be looking this at your first teminal
 Server running on port 4000
 Users database connected
 ```
-  2. Running Todos microservice
+3. #### Start backend Todos microservice
 Open a second terminal and execute the followin commands
 ```
 $ cd todosBackend
@@ -61,7 +60,7 @@ You must be looking this at the your second terminal
 Server running on port 4100
 Todos database connected
 ```
-3. #### Start Frontend
+4. #### Start Frontend
 ##### JavaScript - Vanilla
 - ... soon ...
 ##### JavaScript - Angular
