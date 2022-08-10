@@ -22,11 +22,11 @@ export const $ui = `
   </div>
 </nav>
 <section id="uiContent" class="container text-center"></section>
-<footer class="text-center">
+<aside><p id="feedback"></p></aside>
+<footer class="text-center mt-5">
   <p><small>Copyright &copy; 2022</small></p>
 </footer>
 `;
-
 export const $home = `
 <h1>Home</h1>
 `;
@@ -35,17 +35,22 @@ export const $private = `
 `;
 export const $signUp = `
 <h1>Sign Up</h1>
+<form id="signUpForm" class="col-sm-6 mx-auto my-4">
+<input type="text" name="name" class="form-control mb-3" placeholder="Name">
+  <input type="email" name="email" class="form-control mb-3" placeholder="Email address">
+  <input type="password" name="password" class="form-control mb-3" placeholder="Password">
+  <input type="password" name="confirmPassword" class="form-control mb-3" placeholder="Confirm password">
+  <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+</form>
 `;
 export const $login = `
 <h1>Login</h1>
-<p>Enter your access credentials.</p>
 <form id="loginForm" class="col-sm-6 mx-auto my-4">
   <input type="email" name="email" class="form-control mb-3" placeholder="Email address">
   <input type="password" name="password" class="form-control mb-3" placeholder="Password">
   <button type="submit" class="btn btn-primary btn-lg">Enter</button>
 </form>
-<p>If you don't have access credentials, please sign up.</p>
-<a href="#/sign-up" class="btn btn-secondary mb-5">Sign Up</a>
+<a href="#/sign-up" class="btn btn-info mb-5">Sign Up</a>
 `;
 export const $404 = `
 <h1>404</h1>
