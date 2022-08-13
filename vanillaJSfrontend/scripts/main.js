@@ -3,6 +3,7 @@ import { $ui, $home, $private, $signUp, $login, $404 } from './components.js';
 
 const w = window,
   d = document,
+  usersApiUrl = 'http://localhost:4000/api/v1/users',
   $main = d.getElementById('main');
 
 let url = null,
@@ -11,13 +12,15 @@ let url = null,
   $uiContent = null,
   $feedback = null,
   $signUpForm = null,
-  $loginForm = null;
+  $loginForm = null,
+  $disabled = null;
 
 d.addEventListener('DOMContentLoaded', () => {
   url = window.location.hash.slice(1) || '/';
   $main.innerHTML = $ui;
   $uiContent = d.getElementById('uiContent');
   $feedback = d.getElementById('feedback');
+  $disabled = d.querySelector('.disabled');
   myRouter();
   eventListeners();
 });
@@ -34,7 +37,12 @@ function myRouter() {
       break;
     case '/private':
       $uiContent.innerHTML = $private;
-      feedback('success', `¡Hello, ${name}!.`);
+      if (name) {
+        name = name
+          .toLowerCase()
+          .replace(/\w/, (firstLetter) => firstLetter.toUpperCase());
+        feedback('success', `¡Hello, ${name}!`);
+      }
       eventListeners();
       break;
     case '/sign-up':
@@ -74,7 +82,7 @@ function eventListeners() {
     $signUpForm.addEventListener('submit', handleSubmit);
   }
   if ($loginForm) {
-    $loginForm.email.addEventListener('input', handleInput);
+    $loginForm.username.addEventListener('input', handleInput);
     $loginForm.password.addEventListener('input', handleInput);
     $loginForm.addEventListener('submit', handleSubmit);
   }
@@ -84,6 +92,8 @@ function handleSubmit(e) {
   e.preventDefault();
   if (areFieldsValid(e.target.id)) {
     feedback('info', 'Wait please, we are processing your request ...');
+    if (e.target.id === 'signUpForm') handleSignUp();
+    if (e.target.id === 'loginForm') handleLogin();
   }
 }
 
@@ -98,10 +108,16 @@ function areFieldsValid(id) {
       feedback('danger', 'Name is required.');
       return false;
     }
+    if (!credentials.email || !credentials.email.trim()) {
+      feedback('danger', 'email is required.');
+      return false;
+    }
   }
-  if (!credentials.email || !credentials.email.trim()) {
-    feedback('danger', 'email is required.');
-    return false;
+  if (id === 'loginForm') {
+    if (!credentials.username || !credentials.username.trim()) {
+      feedback('danger', 'username is required.');
+      return false;
+    }
   }
   if (!credentials.password || !credentials.password.trim()) {
     feedback('danger', 'Password is required.');
@@ -120,7 +136,50 @@ function areFieldsValid(id) {
   return true;
 }
 
+function replaceLocation(slug) {
+  const path = new URL(d.URL);
+  path.hash = `#/${slug}`;
+  w.location.replace(path);
+}
+
 function feedback(type, msg) {
   $feedback.className = `text-${type} text-center fs-4`;
   $feedback.textContent = msg;
+}
+
+function handleSignUp() {
+  delete credentials.confirmPassword;
+  fetch(usersApiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  })
+    .then((data) => data.json())
+    .then((json) => {
+      if (json.success) {
+        replaceLocation('login');
+      }
+    })
+    .catch((err) => console.log(err));
+}
+function handleLogin() {
+  fetch(`${usersApiUrl}/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  })
+    .then((data) => data.json())
+    .then((json) => {
+      if (json.success) {
+        const decoded = jwt_decode(json.success);
+        name = decoded.name;
+        $disabled.classList.remove('disabled');
+        replaceLocation('private');
+      }
+    })
+    .catch((err) => console.log(err));
 }

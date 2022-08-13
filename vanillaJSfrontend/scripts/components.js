@@ -10,7 +10,7 @@ export const $ui = `
           <a class="nav-link active" aria-current="page" href="#/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#/private">Private</a>
+          <a class="nav-link disabled" href="#/private" tabindex="-1" aria-disabled="true">Private</a>
         </li>
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
@@ -46,7 +46,7 @@ export const $signUp = `
 export const $login = `
 <h1>Login</h1>
 <form id="loginForm" class="col-sm-6 mx-auto my-4">
-  <input type="email" name="email" class="form-control mb-3" placeholder="Email address">
+  <input type="email" name="username" class="form-control mb-3" placeholder="Username">
   <input type="password" name="password" class="form-control mb-3" placeholder="Password">
   <button type="submit" class="btn btn-primary btn-lg">Enter</button>
 </form>
@@ -56,4 +56,3 @@ export const $404 = `
 <h1>404</h1>
 <h2>Page not found.</h2>
 `;
-//<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Private</a>
