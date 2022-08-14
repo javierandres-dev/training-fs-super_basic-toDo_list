@@ -15,7 +15,10 @@ export const $ui = `
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#/login">Login</a>
+          <a id="linkLogin" class="nav-link active" aria-current="page" href="#/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a id="linkLogout" class="nav-link active" aria-current="page" href="#/">Logout</a>
         </li>
       </ul>
     </div>

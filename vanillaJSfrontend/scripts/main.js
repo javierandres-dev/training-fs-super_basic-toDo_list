@@ -13,6 +13,8 @@ let url = null,
   $feedback = null,
   $signUpForm = null,
   $loginForm = null,
+  $linkLogin = null,
+  $linkLogout = null,
   $disabled = null;
 
 d.addEventListener('DOMContentLoaded', () => {
@@ -20,12 +22,42 @@ d.addEventListener('DOMContentLoaded', () => {
   $main.innerHTML = $ui;
   $uiContent = d.getElementById('uiContent');
   $feedback = d.getElementById('feedback');
+  $linkLogin = d.getElementById('linkLogin');
+  $linkLogout = d.getElementById('linkLogout');
   $disabled = d.querySelector('.disabled');
+  checkStorage();
   myRouter();
   eventListeners();
 });
 
+function checkStorage() {
+  const token = localStorage.getItem('tkn');
+  if (token) {
+    try {
+      const decoded = jwt_decode(token);
+      name = decoded.name;
+      formatName();
+      $disabled.classList.remove('disabled');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+function formatName() {
+  name = name
+    .toLowerCase()
+    .replace(/\w/, (firstLetter) => firstLetter.toUpperCase());
+}
+
 function myRouter() {
+  if (name) {
+    $linkLogin.classList.add('d-none');
+    $linkLogout.classList.remove('d-none');
+  } else {
+    $linkLogout.classList.add('d-none');
+    $linkLogin.classList.remove('d-none');
+  }
   switch (url) {
     case '/':
       $uiContent.innerHTML = $home;
@@ -37,12 +69,7 @@ function myRouter() {
       break;
     case '/private':
       $uiContent.innerHTML = $private;
-      if (name) {
-        name = name
-          .toLowerCase()
-          .replace(/\w/, (firstLetter) => firstLetter.toUpperCase());
-        feedback('success', `¡Hello, ${name}!`);
-      }
+      feedback('success', `¡Hello, ${name}!`);
       eventListeners();
       break;
     case '/sign-up':
@@ -86,6 +113,19 @@ function eventListeners() {
     $loginForm.password.addEventListener('input', handleInput);
     $loginForm.addEventListener('submit', handleSubmit);
   }
+  if (name) {
+    $linkLogout.addEventListener('click', handleLogout);
+  }
+}
+
+function feedback(type, msg) {
+  $feedback.className = `text-${type} text-center fs-4`;
+  $feedback.textContent = msg;
+}
+
+function handleInput(e) {
+  const { name, value } = e.target;
+  credentials = { ...credentials, [name]: value.trim() };
 }
 
 function handleSubmit(e) {
@@ -95,11 +135,6 @@ function handleSubmit(e) {
     if (e.target.id === 'signUpForm') handleSignUp();
     if (e.target.id === 'loginForm') handleLogin();
   }
-}
-
-function handleInput(e) {
-  const { name, value } = e.target;
-  credentials = { ...credentials, [name]: value.trim() };
 }
 
 function areFieldsValid(id) {
@@ -136,17 +171,6 @@ function areFieldsValid(id) {
   return true;
 }
 
-function replaceLocation(slug) {
-  const path = new URL(d.URL);
-  path.hash = `#/${slug}`;
-  w.location.replace(path);
-}
-
-function feedback(type, msg) {
-  $feedback.className = `text-${type} text-center fs-4`;
-  $feedback.textContent = msg;
-}
-
 function handleSignUp() {
   delete credentials.confirmPassword;
   fetch(usersApiUrl, {
@@ -164,6 +188,7 @@ function handleSignUp() {
     })
     .catch((err) => console.log(err));
 }
+
 function handleLogin() {
   fetch(`${usersApiUrl}/login`, {
     method: 'POST',
@@ -175,11 +200,26 @@ function handleLogin() {
     .then((data) => data.json())
     .then((json) => {
       if (json.success) {
+        localStorage.setItem('tkn', json.success);
         const decoded = jwt_decode(json.success);
         name = decoded.name;
+        formatName();
         $disabled.classList.remove('disabled');
         replaceLocation('private');
       }
     })
     .catch((err) => console.log(err));
+}
+
+function replaceLocation(slug) {
+  const path = new URL(d.URL);
+  path.hash = `#/${slug}`;
+  w.location.replace(path);
+}
+
+function handleLogout() {
+  localStorage.removeItem('tkn');
+  name = null;
+  $disabled.classList.add('disabled');
+  replaceLocation('');
 }
